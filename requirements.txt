@@ -3,3 +3,4 @@ numpy
 matplotlib
 pytrends
 requests
+yfinance
