@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from pytrends.request import TrendReq
 
 # find value of interest (single ticket)
-kw_list = ['BBAS3', 'PETR4']
+kw_list = ['BBAS3']
 today = dt.date.today()
 
 def find_ticker(ticker, start_date='2025-01-01', end_date=today):
@@ -37,17 +37,10 @@ show_graph_comparison(df, column_names)
 
 # %%
 
-def show_graph(df, column_names=None):
-    print(f"DataFrame columns: {column_names}")
-    column_names = df.columns.tolist()
-    plt.figure(figsize=(10, 5))
-    plt.plot(df.index, df[column_names[0]], label=f'{column_names[0]} Interest', color='blue')
-    plt.plot(df.index, df[column_names[1]], label=f'{column_names[1]} Interest', color='orange')
-    plt.title(f'Interest Over Time for {column_names[0]}')
-    plt.xlabel('Date')
-    plt.ylabel('Interest')
-    plt.legend()
-    plt.grid()
-    plt.show()
+pytrend = TrendReq()
+pytrend.build_payload(kw_list, timeframe='2025-01-01 2025-10-01', geo='BR')
+res = pytrend.interest_by_region(resolution='COUNTRY', inc_low_vol=True, inc_geo_code=True)
+similars = pytrend.related_queries()
 
-show_graph(df, column_names)
+similars
+# %%
