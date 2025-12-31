@@ -4,3 +4,4 @@ matplotlib
 pytrends
 requests
 yfinance
+investpy
